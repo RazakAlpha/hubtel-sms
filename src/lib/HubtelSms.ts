@@ -10,10 +10,25 @@ import { Message } from "./interfaces/Message";
 import { QueryMessageResponse } from "./interfaces/QueryMessageResponse";
 import { CancelScheduledMessageResponse } from "./interfaces/CancelScheduledMessageResponse";
 
-const BASE_URL = "https://api.hubtel.com/v1/messages";
+// const this.BASE_URL = "https://api.hubtel.com/v1/messages";
 
 export class HubtelSms {
   private headers!: object;
+  private  _BASE_URL: string = "https://smsc.hubtel.com/v1/messages";
+
+  
+  public get BASE_URL() : string {
+    return this._BASE_URL
+  } 
+
+  
+  public set BASE_URL(v : string) {
+    this._BASE_URL = v;
+  }
+  
+  
+
+
   constructor(private readonly config: Partial<Config>) {
     if (!(config.clientId && config.clientSecret)) {
       throw new Error("Invalid Configuration");
@@ -36,7 +51,7 @@ export class HubtelSms {
   async quickSend(data: QuickSendMessage): Promise<SendMessageResponse> {
     try {
       const response = await axios.get(
-        `${BASE_URL}/send?${qs.stringify({...data})}&ClientId=${
+        `${this.BASE_URL}/send?${qs.stringify({...data})}&ClientId=${
           this.config.clientId
         }&ClientSecret=${this.config.clientSecret}`
       );
@@ -53,7 +68,7 @@ export class HubtelSms {
    */
   async sendMessage(data: SendMessage): Promise<SendMessageResponse> {
     try {
-      const response = await axios.post(`${BASE_URL}`, data, {
+      const response = await axios.post(`${this.BASE_URL}`, data, {
         headers: this.headers
       });
       return response.data;
@@ -70,7 +85,7 @@ export class HubtelSms {
 
   async getMessage(MessageId: string): Promise<Message> {
     try {
-      const response = await axios.get(`${BASE_URL}/${MessageId}`, {
+      const response = await axios.get(`${this.BASE_URL}/${MessageId}`, {
         headers: this.headers
       });
       return response.data;
@@ -85,7 +100,7 @@ export class HubtelSms {
    */
   async queryMessage(): Promise<QueryMessageResponse>{
     try {
-      const response = await axios.get(`${BASE_URL}`, {
+      const response = await axios.get(`${this.BASE_URL}`, {
         headers: this.headers
       });
 
@@ -104,7 +119,7 @@ export class HubtelSms {
     data: ScheduleMessage
   ): Promise<SendMessageResponse>{
     try {
-      const response = await axios.post(`${BASE_URL}`, data, {
+      const response = await axios.post(`${this.BASE_URL}`, data, {
         headers: this.headers
       });
 
@@ -126,7 +141,7 @@ export class HubtelSms {
   }): Promise<SendMessageResponse>{
     try {
       const response = await axios.put(
-        `${BASE_URL}/${data.MessageId}`,
+        `${this.BASE_URL}/${data.MessageId}`,
         { Time: data.Time },
         {
           headers: this.headers
@@ -148,7 +163,7 @@ export class HubtelSms {
     MessageId: string
   ): Promise<CancelScheduledMessageResponse> {
     try {
-      const response = await axios.delete(`${BASE_URL}/${MessageId}`, {
+      const response = await axios.delete(`${this.BASE_URL}/${MessageId}`, {
         headers: this.headers
       });
 
