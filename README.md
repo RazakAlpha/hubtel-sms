@@ -21,7 +21,11 @@ const hubtelSms = new HubtelSms({
   clientId: "YOUR_HUBTEL_CLIENT_ID",
   clientSecret: "YOUR_HUBTEL_CLIENT_SECRET"
 });
+
+// TO CHANGE HUBTEL'S SMS API ENDPOINT
+ hubtelSms.BASE_URL = "https://smsc.hubtel.com/v1/messages" // DEFAULT VALUE
 ```
+
 
 ## SMS
 
