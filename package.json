@@ -1,6 +1,6 @@
 {
-  "name": "hubtel-sms",
-  "version": "2.0.3",
+  "name": "hubtel-sms-extended",
+  "version": "1.0.0",
   "description": "A Node.js wrapper for Hubtel's Sms API.",
   "main": "dist/index.js",
   "dependencies": {
@@ -18,12 +18,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KwabenBerko/hubtel-sms.git"
+    "url": "git+https://github.com/RazakAlpha/hubtel-sms.git"
   },
-  "author": "Kwabena Berko <kwabenaberko95@gmail.com>",
+  "author": "Razak Alpha <saint.alpha12@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KwabenBerko/hubtel-sms/issues"
+    "url": "https://github.com/RazakAlpha/hubtel-sms/issues"
   },
-  "homepage": "https://github.com/KwabenBerko/hubtel-sms#readme"
+  "homepage": "https://github.com/RazakAlpha/hubtel-sms#readme"
 }
